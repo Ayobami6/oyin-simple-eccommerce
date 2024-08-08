@@ -3,6 +3,7 @@ import Image from "next/image";
 import Banner from "@/components/Banner";
 import Header from "@/components/Header";
 import CarouselPlugin from "@/components/CarouselPlugin";
+import PopularProduct from "@/components/PopularProduct";
 
 export default function Home() {
   const categories = ["Men's Clothing", "Women's Clothing", "Slides", "Bags"];
@@ -25,6 +26,11 @@ export default function Home() {
         }
       </div>
       <CarouselPlugin />
+      <PopularProduct type="Popular Products" />
+      <div className="my-4">
+        <PopularProduct type="Products" />
+
+      </div>
     </div>
   );
 }
