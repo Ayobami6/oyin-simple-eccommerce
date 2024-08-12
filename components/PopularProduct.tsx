@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 
 import {
@@ -10,6 +11,9 @@ import {
 } from "@/components/ui/card"
 
 import Image from 'next/image'
+import { Button } from "@/components/ui/button";
+import { FaShareAlt } from "react-icons/fa";
+import { useToast } from "@/components/ui/use-toast"
 
 
 type Props = {
@@ -17,7 +21,18 @@ type Props = {
 }
 
 const PopularProduct = ({ type }: Props) => {
+    const { toast } = useToast()
     const data = [1, 2, 3, 4, 5];
+    const handleCopyClick = (textToCopy: string) => {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            console.log("Text copied to clipboard:", textToCopy);
+            toast({
+                title: "Text copied to clipboard",
+            })
+        }).catch(err => {
+            console.error("Failed to copy text: ", err);
+        });
+    };
     return (
         <>
             <div className='px-[30px]'>
@@ -33,10 +48,21 @@ const PopularProduct = ({ type }: Props) => {
                                 </CardHeader>
                                 <CardContent>
                                     <CardTitle>Product Name</CardTitle>
-                                    <CardDescription>Product Description</CardDescription>
+                                    <CardDescription>
+                                        Product Description
+                                        <div className='flex justify-start font-bold mt-4'>$100</div>
+
+                                    </CardDescription>
                                 </CardContent>
                                 <CardFooter>
-                                    <div className='text-center'>$100</div>
+                                    <div onClick={() => handleCopyClick(String(item))} className='flex justify-between hover:text-dark cursor-pointer gap-2 w-full text-center'>
+                                        <div className='p-2'>
+                                            <FaShareAlt />
+                                        </div>
+                                        <Button className="font-Poppins w-[80px] h-[30px] shadow-md text-[14px] text-white bg-main" type="button">
+                                            Order
+                                        </Button>
+                                    </div>
                                 </CardFooter>
                             </Card >
 
