@@ -4,6 +4,7 @@ import Banner from "@/components/Banner";
 import Header from "@/components/Header";
 import CarouselPlugin from "@/components/CarouselPlugin";
 import PopularProduct from "@/components/PopularProduct";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const categories = ["Men's Clothing", "Women's Clothing", "Slides", "Bags"];
@@ -31,6 +32,7 @@ export default function Home() {
         <PopularProduct type="Products" />
 
       </div>
+      <Footer />
     </div>
   );
 }
