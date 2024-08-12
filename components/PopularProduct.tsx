@@ -22,7 +22,7 @@ const PopularProduct = ({ type }: Props) => {
         <>
             <div className='px-[30px]'>
                 <div className='p-10 font-bold text-2xl'>{type}</div>
-                <div className='grid md:px-6 md:grid-cols-5 grid-cols-1 gap-3'>
+                <div className='grid md:px-6 md:grid-cols-4 grid-cols-1 gap-3'>
                     {
                         data.map((item, index) => (
                             < Card key={index} className='rounded-md shadow-md hover:shadow-lg' >

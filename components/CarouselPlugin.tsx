@@ -10,6 +10,9 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
+import Image from 'next/image'
+
+
 
 type Props = {}
 
@@ -32,7 +35,7 @@ const CarouselPlugin = (props: Props) => {
                             <div className="p-1">
                                 <Card className=''>
                                     <CardContent className="flex h-[300px] items-center justify-center p-6">
-                                        <span className="text-4xl font-semibold">{index + 1}</span>
+                                        <Image src={'/images/oyin.jpg'} alt='logo' width={200} height={150} objectFit='cover' />
                                     </CardContent>
                                 </Card>
                             </div>

@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import CarouselPlugin from "@/components/CarouselPlugin";
 import PopularProduct from "@/components/PopularProduct";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const categories = ["Men's Clothing", "Women's Clothing", "Slides", "Bags"];
@@ -31,6 +32,16 @@ export default function Home() {
       <div className="my-4">
         <PopularProduct type="Products" />
 
+      </div>
+      <div className="my-8">
+        <h1 className="text-center font-bold text-3xl my-10">Need Something Like This For An Affordable Price?</h1>
+        <div className="flex justify-center">
+          <a href="mailto:ayobamidele006@gmail.com">
+            <Button className="w-[200px] font-Poppins h-[60px] shadow-md text-[16px] text-white bg-main" type="button">
+              Contact Us
+            </Button>
+          </a>
+        </div>
       </div>
       <Footer />
     </div>
