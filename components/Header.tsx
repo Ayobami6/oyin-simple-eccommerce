@@ -17,7 +17,7 @@ const Header = ({ searchText, setSearchText, handlePress }: Props) => {
                 </div>
                 <div className='relative'>
                     <input
-                        type="text" className='p-2 border-2 rounded-md w-[400px] pl-10'
+                        type="text" className='p-2 border-2 rounded-md w-full pl-10'
                         placeholder='You looking for something?'
                         onChange={(e) => setSearchText(e.target.value)}
                         onKeyDown={handlePress}

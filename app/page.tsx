@@ -44,7 +44,7 @@ export default function Home() {
         <PopularProduct type="Products" />
 
       </div>
-      <div className="my-8">
+      <div className="my-8 p-4">
         <h1 className="text-center font-bold text-2xl my-10">Need Something Like This For An Affordable Price?</h1>
         <div className="flex justify-center">
           <a href="mailto:ayobamidele006@gmail.com">

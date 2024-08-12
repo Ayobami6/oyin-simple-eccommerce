@@ -22,7 +22,7 @@ const CarouselPlugin = (props: Props) => {
     )
 
     return (
-        <div className='flex justify-center mt-5'>
+        <div className='flex justify-center mt-5 p-4'>
             <Carousel
                 plugins={[plugin.current]}
                 className="w-full max-w-5xl"
