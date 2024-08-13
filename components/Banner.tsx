@@ -1,14 +1,33 @@
 import React from 'react'
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
-type Props = {}
+type Props = {
+    bannerText: string
+    loading: boolean
+}
 
-const Banner = (props: Props) => {
+const Banner = ({ bannerText, loading }: Props) => {
     return (
         <div className='bg-submain h-[80px] flex items-center' >
             <div className='flex justify-center p-5 w-full'>
-                <h1 className='text-center'>
-                    Get 5% Discount on all goods purchase on Toke Collection Website
-                </h1>
+                {
+                    loading ?
+                        (
+                            <>
+                                <Box >
+                                    <CircularProgress color='secondary' />
+                                </Box>
+                            </>
+
+
+                        ) : (
+                            <h1 className='text-center'>
+                                {bannerText}
+                            </h1>
+
+                        )
+                }
 
             </div>
 

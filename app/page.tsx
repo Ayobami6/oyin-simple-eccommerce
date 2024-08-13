@@ -6,15 +6,33 @@ import CarouselPlugin from "@/components/CarouselPlugin";
 import PopularProduct from "@/components/PopularProduct";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { fetchBanner } from "@/api/banner";
 
 export default function Home() {
+  const [bannerText, setBannerText] = useState("");
   const categories = ["Men's Clothing", "Women's Clothing", "Slides", "Bags"];
+  const [bannerLoading, setBannerLoading] = useState(false);
   const catFilter = () => {
     // Filter logic goes here
     console.log("Filtering")
   }
+  const bannerFetch = async () => {
+    try {
+      setBannerLoading(true);
+      const response = await fetchBanner();
+      if (response.status === "success") {
+        setBannerLoading(false);
+        setBannerText(response?.data.text);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const [searchText, setSearchText] = useState("");
+  useEffect(() => {
+    bannerFetch();
+  }, []);
   const handleSearch = () => {
     console.log(searchText);
     // Search logic goes here
@@ -22,7 +40,7 @@ export default function Home() {
   }
   return (
     <div>
-      <Banner />
+      <Banner bannerText={bannerText} loading={bannerLoading} />
       <Header
         searchText={searchText}
         setSearchText={setSearchText}
