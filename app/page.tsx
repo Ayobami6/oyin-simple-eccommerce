@@ -8,11 +8,14 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { fetchBanner } from "@/api/banner";
+import { fetchAdvert } from "@/api/advert";
 
 export default function Home() {
   const [bannerText, setBannerText] = useState("");
+  const [advertData, setAdvertData] = useState([]);
   const categories = ["Men's Clothing", "Women's Clothing", "Slides", "Bags"];
   const [bannerLoading, setBannerLoading] = useState(false);
+  const [advertLoading, setAdvertLoading] = useState(false);
   const catFilter = () => {
     // Filter logic goes here
     console.log("Filtering")
@@ -26,12 +29,28 @@ export default function Home() {
         setBannerText(response?.data.text);
       }
     } catch (error) {
+      setBannerLoading(false);
+      console.log(error);
+    }
+  }
+  const advertFetch = async () => {
+    try {
+      setAdvertLoading(true);
+      const response = await fetchAdvert();
+      if (response.status === "success") {
+        console.log(response)
+        setAdvertLoading(false);
+        setAdvertData(response?.data);
+      }
+    } catch (error) {
+      setAdvertLoading(false);
       console.log(error);
     }
   }
   const [searchText, setSearchText] = useState("");
   useEffect(() => {
     bannerFetch();
+    advertFetch();
   }, []);
   const handleSearch = () => {
     console.log(searchText);
@@ -56,7 +75,7 @@ export default function Home() {
           ))
         }
       </div>
-      <CarouselPlugin />
+      <CarouselPlugin data={advertData} loading={advertLoading} />
       <PopularProduct type="Popular Products" />
       <div className="my-4">
         <PopularProduct type="Products" />

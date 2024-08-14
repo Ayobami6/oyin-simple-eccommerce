@@ -11,15 +11,20 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import Image from 'next/image'
+import Loading from './Loading'
 
 
 
-type Props = {}
+type Props = {
+    data: any;
+    loading: boolean;
+}
 
-const CarouselPlugin = (props: Props) => {
+const CarouselPlugin = ({ data, loading }: Props) => {
     const plugin = useRef(
         Autoplay({ delay: 2000, stopOnInteraction: false })
     )
+    console.log(data)
 
     return (
         <div className='flex justify-center mt-5 p-4'>
@@ -30,17 +35,29 @@ const CarouselPlugin = (props: Props) => {
                 onMouseLeave={plugin.current.reset}
             >
                 <CarouselContent className=''>
-                    {Array.from({ length: 5 }).map((_, index) => (
-                        <CarouselItem key={index}>
-                            <div className="p-1">
-                                <Card className=''>
-                                    <CardContent className="flex h-[300px] items-center justify-center p-6">
-                                        <Image src={'/images/oyin.jpg'} alt='logo' width={200} height={150} objectFit='cover' />
-                                    </CardContent>
-                                </Card>
-                            </div>
-                        </CarouselItem>
-                    ))}
+                    {loading ? (
+                        <Loading />
+                    ) : data && data.length > 0 ? (
+                        data.map((item: any, idx: number) => (
+                            <CarouselItem key={idx}>
+                                <div className="p-1">
+                                    <Card className=''>
+                                        <CardContent className="relative flex h-[300px] items-center justify-center p-6">
+                                            <Image
+                                                src={`http://localhost:8000${item.image}`}
+                                                alt='loading'
+                                                layout="fill"
+                                                objectFit="cover"
+                                                className="rounded-md"
+                                            />
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            </CarouselItem>
+                        ))
+                    ) : (
+                        <div>No data available</div>
+                    )}
                 </CarouselContent>
                 <CarouselPrevious />
                 <CarouselNext />

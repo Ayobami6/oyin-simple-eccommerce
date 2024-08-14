@@ -1,6 +1,6 @@
 import React from 'react'
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import Loading from './Loading'
+
 
 type Props = {
     bannerText: string
@@ -15,12 +15,8 @@ const Banner = ({ bannerText, loading }: Props) => {
                     loading ?
                         (
                             <>
-                                <Box >
-                                    <CircularProgress color='secondary' />
-                                </Box>
+                                <Loading />
                             </>
-
-
                         ) : (
                             <h1 className='text-center'>
                                 {bannerText}
