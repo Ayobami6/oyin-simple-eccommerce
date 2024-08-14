@@ -36,7 +36,10 @@ const CarouselPlugin = ({ data, loading }: Props) => {
             >
                 <CarouselContent className=''>
                     {loading ? (
-                        <Loading />
+                        <div className='flex items-center justify-center'>
+                            <Loading />
+                        </div>
+
                     ) : data && data.length > 0 ? (
                         data.map((item: any, idx: number) => (
                             <CarouselItem key={idx}>
