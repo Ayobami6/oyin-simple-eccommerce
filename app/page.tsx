@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { fetchBanner } from "@/api/banner";
 import { fetchAdvert } from "@/api/advert";
+import { fetchProducts } from "@/api/products"
 
 export default function Home() {
   const [bannerText, setBannerText] = useState("");
@@ -16,6 +17,8 @@ export default function Home() {
   const categories = ["Men's Clothing", "Women's Clothing", "Slides", "Bags"];
   const [bannerLoading, setBannerLoading] = useState(false);
   const [advertLoading, setAdvertLoading] = useState(false);
+  const [productsLoading, setProductsLoading] = useState(false);
+  const [products, setProducts] = useState([])
   const catFilter = () => {
     // Filter logic goes here
     console.log("Filtering")
@@ -32,6 +35,21 @@ export default function Home() {
       setBannerLoading(false);
       console.log(error);
     }
+  }
+  const productsFetch = async () => {
+    try {
+      setProductsLoading(true);
+      const response = await fetchProducts();
+      if (response.status == "success") {
+        setProductsLoading(false);
+        setProducts(response?.data);
+      }
+    } catch (err) {
+      setProductsLoading(false)
+      console.log(err)
+
+    }
+
   }
   const advertFetch = async () => {
     try {
@@ -51,6 +69,7 @@ export default function Home() {
   useEffect(() => {
     bannerFetch();
     advertFetch();
+    productsFetch();
   }, []);
   const handleSearch = () => {
     console.log(searchText);
@@ -76,9 +95,9 @@ export default function Home() {
         }
       </div>
       <CarouselPlugin data={advertData} loading={advertLoading} />
-      <PopularProduct type="Popular Products" />
+      <PopularProduct products={products} loading={productsLoading} type="Popular Products" />
       <div className="my-4">
-        <PopularProduct type="Products" />
+        <PopularProduct products={products} loading={productsLoading} type="Products" />
 
       </div>
       <div className="my-8 p-4">

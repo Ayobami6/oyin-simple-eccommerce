@@ -14,13 +14,16 @@ import Image from 'next/image'
 import { Button } from "@/components/ui/button";
 import { FaShareAlt } from "react-icons/fa";
 import { useToast } from "@/components/ui/use-toast"
-
+import Link from 'next/link';
+import Loading from "./Loading"
 
 type Props = {
     type: string;
+    products: any;
+    loading: boolean
 }
 
-const PopularProduct = ({ type }: Props) => {
+const PopularProduct = ({ type, products, loading }: Props) => {
     const { toast } = useToast()
     const data = [1, 2, 3, 4, 5];
     const handleCopyClick = (textToCopy: string) => {
@@ -37,39 +40,82 @@ const PopularProduct = ({ type }: Props) => {
         <>
             <div className='px-[30px]'>
                 <div className='p-10 font-bold text-2xl'>{type}</div>
-                <div className='grid md:px-6 lg:grid-cols-4 sm:grid-cols-3 grid-cols-1 gap-3'>
-                    {
-                        data.map((item, index) => (
-                            < Card key={index} className='rounded-md shadow-md hover:shadow-lg' >
-                                <CardHeader title={String(item)}>
-                                    <div className='flex justify-center w-full h-full rounded-sm p-3 border-b-1'>
-                                        <Image src={'/images/oyin.jpg'} alt='logo' width={200} height={150} objectFit='cover' />
-                                    </div>
-                                </CardHeader>
-                                <CardContent>
-                                    <CardTitle>Product Name</CardTitle>
-                                    <CardDescription>
-                                        Product Description
-                                        <div className='flex justify-start font-bold mt-4'>$100</div>
+                {
+                    loading ? (<Loading />) : products && products.length > 0 ? (
+                        <div className='grid md:px-6 lg:grid-cols-4 sm:grid-cols-3 grid-cols-1 gap-3'>
+                            {
+                                products.map((item: any, index: number) => (
+                                    < Card key={index} className='rounded-md shadow-md hover:shadow-lg' >
+                                        <CardHeader title={String(item)}>
+                                            <div className='flex justify-center w-full h-full rounded-sm p-3 border-b-1'>
+                                                <Image src={item.assets[0].image} alt='logo' width={200} height={150} objectFit='cover' />
+                                            </div>
+                                        </CardHeader>
+                                        <Link key={index} href={`/products/${item.id}`}>
+                                            <CardContent>
+                                                <CardTitle>{item.name}</CardTitle>
+                                                <CardDescription>
+                                                    Product Description
+                                                    <div className='flex justify-start font-bold mt-4'>₦{item.price}</div>
 
-                                    </CardDescription>
-                                </CardContent>
-                                <CardFooter>
-                                    <div onClick={() => handleCopyClick(String(item))} className='flex justify-between hover:text-dark cursor-pointer gap-2 w-full text-center'>
-                                        <div className='p-2'>
-                                            <FaShareAlt />
-                                        </div>
-                                        <Button className="font-Poppins w-[80px] h-[30px] shadow-md text-[14px] text-white bg-main" type="button">
-                                            Order
-                                        </Button>
-                                    </div>
-                                </CardFooter>
-                            </Card >
+                                                </CardDescription>
+                                            </CardContent>
+                                        </Link>
+                                        <CardFooter>
+                                            <div onClick={() => handleCopyClick(String(`http://localhost:3000/products/${item.id}`))} className='flex justify-between hover:text-dark cursor-pointer gap-2 w-full text-center'>
+                                                <div className='p-2'>
+                                                    <FaShareAlt />
+                                                </div>
+                                                <Button className="font-Poppins w-[80px] h-[30px] shadow-md text-[14px] text-white bg-main" type="button">
+                                                    Order
+                                                </Button>
+                                            </div>
+                                        </CardFooter>
+                                    </Card >
+                                ))
+                            }
 
-                        ))
-                    }
+                        </div>
+                    ) : (
+                        <div className='grid md:px-6 lg:grid-cols-4 sm:grid-cols-3 grid-cols-1 gap-3'>
+                            {
+                                data.map((item, index) => (
+                                    <Link key={index} href={`/products/${index}`}>
+                                        < Card key={index} className='rounded-md shadow-md hover:shadow-lg' >
+                                            <CardHeader title={String(item)}>
+                                                <div className='flex justify-center w-full h-full rounded-sm p-3 border-b-1'>
+                                                    <Image src={'/images/oyin.jpg'} alt='logo' width={200} height={150} objectFit='cover' />
+                                                </div>
+                                            </CardHeader>
+                                            <CardContent>
+                                                <CardTitle>Product Name</CardTitle>
+                                                <CardDescription>
+                                                    Product Description
+                                                    <div className='flex justify-start font-bold mt-4'>$100</div>
 
-                </div>
+                                                </CardDescription>
+                                            </CardContent>
+                                            <CardFooter>
+                                                <div onClick={() => handleCopyClick(String(item))} className='flex justify-between hover:text-dark cursor-pointer gap-2 w-full text-center'>
+                                                    <div className='p-2'>
+                                                        <FaShareAlt />
+                                                    </div>
+                                                    <Button className="font-Poppins w-[80px] h-[30px] shadow-md text-[14px] text-white bg-main" type="button">
+                                                        Order
+                                                    </Button>
+                                                </div>
+                                            </CardFooter>
+                                        </Card >
+
+                                    </Link>
+
+                                ))
+                            }
+
+                        </div>
+                    )
+                }
+
 
             </div>
 
