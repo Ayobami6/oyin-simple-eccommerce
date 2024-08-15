@@ -41,7 +41,7 @@ const PopularProduct = ({ type, products, loading }: Props) => {
             <div className='px-[30px]'>
                 <div className='p-10 font-bold text-2xl'>{type}</div>
                 {
-                    loading ? (<Loading />) : products && products.length > 0 ? (
+                    loading ? (<div className='flex items-center justify-center'><Loading /> </div>) : products && products.length > 0 ? (
                         <div className='grid md:px-6 lg:grid-cols-4 sm:grid-cols-3 grid-cols-1 gap-3'>
                             {
                                 products.map((item: any, index: number) => (
