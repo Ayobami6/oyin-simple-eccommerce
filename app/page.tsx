@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { fetchBanner } from "@/api/banner";
 import { fetchAdvert } from "@/api/advert";
-import { fetchProducts } from "@/api/products"
+import { fetchProducts, searchProduct } from "@/api/products"
 
 export default function Home() {
   const [bannerText, setBannerText] = useState("");
@@ -65,15 +65,27 @@ export default function Home() {
       console.log(error);
     }
   }
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState("init");
   useEffect(() => {
     bannerFetch();
     advertFetch();
     productsFetch();
   }, []);
-  const handleSearch = () => {
-    console.log(searchText);
-    // Search logic goes here
+  const handleSearch = async (value: string) => {
+    console.log(value);
+    try {
+      setProductsLoading(true);
+      const response = await searchProduct(value);
+      if (response.status === "success") {
+        setProductsLoading(false);
+        setProducts(response?.data);
+      }
+      setSearchText("");
+    } catch (error) {
+      setProductsLoading(true);
+      console.log(error);
+
+    }
     console.log("Searching")
   }
   return (

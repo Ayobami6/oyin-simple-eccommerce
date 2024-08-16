@@ -46,9 +46,9 @@ const PopularProduct = ({ type, products, loading }: Props) => {
                             {
                                 products.map((item: any, index: number) => (
                                     < Card key={index} className='rounded-md shadow-md hover:shadow-lg' >
-                                        <CardHeader title={String(item)}>
-                                            <div className='flex justify-center w-full h-full rounded-sm p-3 border-b-1'>
-                                                <Image src={item.assets[0].image} alt='logo' width={200} height={150} objectFit='cover' />
+                                        <CardHeader title={String(item)} className='relative h-[300px] mb-3' >
+                                            <div className='flex justify-center rounded-sm m-3 border-b-1'>
+                                                <Image src={item.assets[0].image} alt='logo' layout='fill' objectFit='cover' className="rounded-md" />
                                             </div>
                                         </CardHeader>
                                         <Link key={index} href={`/products/${item.id}`}>
@@ -80,40 +80,10 @@ const PopularProduct = ({ type, products, loading }: Props) => {
 
                         </div>
                     ) : (
-                        <div className='grid md:px-6 lg:grid-cols-4 sm:grid-cols-3 grid-cols-1 gap-3'>
-                            {
-                                data.map((item, index) => (
-                                    <Link key={index} href={`/products/${index}`}>
-                                        < Card key={index} className='rounded-md shadow-md hover:shadow-lg' >
-                                            <CardHeader title={String(item)}>
-                                                <div className='flex justify-center w-full h-full rounded-sm p-3 border-b-1'>
-                                                    <Image src={'/images/oyin.jpg'} alt='logo' width={200} height={150} objectFit='cover' />
-                                                </div>
-                                            </CardHeader>
-                                            <CardContent>
-                                                <CardTitle>Product Name</CardTitle>
-                                                <CardDescription>
-                                                    Product Description
-                                                    <div className='flex justify-start font-bold mt-4'>$100</div>
-
-                                                </CardDescription>
-                                            </CardContent>
-                                            <CardFooter>
-                                                <div onClick={() => handleCopyClick(String(item))} className='flex justify-between hover:text-dark cursor-pointer gap-2 w-full text-center'>
-                                                    <div className='p-2'>
-                                                        <FaShareAlt />
-                                                    </div>
-                                                    <Button className="font-Poppins w-[80px] h-[30px] shadow-md text-[14px] text-white bg-main" type="button">
-                                                        Order
-                                                    </Button>
-                                                </div>
-                                            </CardFooter>
-                                        </Card >
-
-                                    </Link>
-
-                                ))
-                            }
+                        <div className='flex items-center justify-center'>
+                            <h1>
+                                No products found!
+                            </h1>
 
                         </div>
                     )

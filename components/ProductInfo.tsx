@@ -32,12 +32,12 @@ const ProductInfo = ({ product }: Props) => {
                     {/* photo sections */}
                     <div className='flex flex-col'>
                         <div className='w-[80%] h-[400px] rounded-lg border-2 border-gray-200'>
-                            <div className='flex items-center pt-10 px-5 justify-center'>
+                            <div className='flex items-center pt-10 px-5 justify-center relative w-full h-full'>
                                 {
                                     product ? (
-                                        <Image src={activeImage} alt='logo' width={300} height={200} objectFit='cover' />
+                                        <Image src={activeImage} alt='logo' layout='fill' objectFit='cover' className="rounded-md" />
                                     ) : (
-                                        <Image src={'/images/oyin.jpg'} alt='logo' width={400} height={300} objectFit='cover' />
+                                        <Image src={'/images/oyin.jpg'} alt='logo' layout='fill' objectFit='cover' className="rounded-md" />
                                     )
                                 }
                             </div>
@@ -55,8 +55,8 @@ const ProductInfo = ({ product }: Props) => {
                                                 <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/3">
                                                     <div className="p-1">
                                                         <Card className={`cursor-pointer ${activeIndex === index ? "hover:border-3 border-2 border-gray-500" : "hover:border-2"}`} onClick={() => handleChangeImage(asset.image, index)}>
-                                                            <CardContent className="flex aspect-square items-center justify-center p-6">
-                                                                <Image src={asset?.image} alt='logo' width={100} height={80} objectFit='cover' />
+                                                            <CardContent className="flex aspect-square items-center relative w-full h-full justify-center p-6">
+                                                                <Image src={asset?.image} alt='logo' layout='fill' objectFit='cover' className="rounded-md" />
                                                             </CardContent>
                                                         </Card>
                                                     </div>

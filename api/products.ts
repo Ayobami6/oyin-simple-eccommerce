@@ -22,7 +22,7 @@ export const fetchProductById = async (id: string) => {
     }
 }
 
-const searchProduct = async (searchString: string) => {
+export const searchProduct = async (searchString: string) => {
     try {
         const response = await fetch(`${apiBaseUrl}products?search=${searchString}`)
         const data = await response.json()
@@ -35,7 +35,7 @@ const searchProduct = async (searchString: string) => {
 }
 
 
-const filterByCategory = async (categoryId: number) => {
+export const filterByCategory = async (categoryId: number) => {
     try {
         const response = await fetch(`${apiBaseUrl}products?category=${categoryId}`)
         const data = await response.json()
