@@ -40,7 +40,6 @@ const ProductInfo = ({ product }: Props) => {
                                 }
                             </div>
                         </div>
-
                         <div className='my-4'>
                             <Carousel
                                 opts={{
@@ -51,7 +50,7 @@ const ProductInfo = ({ product }: Props) => {
                                     {
                                         product && (
                                             product.assets.map((asset: any, index: number) => (
-                                                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                                                <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/3">
                                                     <div className="p-1">
                                                         <Card className={`cursor-pointer ${activeIndex === index ? "hover:border-3 border-2 border-gray-500" : "hover:border-2"}`} onClick={() => handleChangeImage(asset.image, index)}>
                                                             <CardContent className="flex aspect-square items-center justify-center p-6">
@@ -82,6 +81,53 @@ const ProductInfo = ({ product }: Props) => {
 
                     {/* details section */}
                     <div className='flex flex-col'>
+                        <h1 className='font-bold text-5xl'>
+                            {product.name}
+                        </h1>
+                        <div className='flex justify-start gap-4 mt-5 text-xl'>
+                            <h1 className='font-semibold line-through text-gray-400'>
+                                ₦{product.price}
+                            </h1>
+                            <h1 className='font-semibold text-gray-400'>
+                                ₦{product.discount_price}
+                            </h1>
+
+                        </div>
+                        <div>
+                            <p>
+                                {product.description}
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            {/* mobile screen */}
+            <div className='md:hidden p-[80px]'>
+                <div className='flex flex-col gap-2'>
+                    <div>
+                        <Carousel className="w-full max-w-3xl">
+                            <CarouselContent>
+                                {product && product.assets.map((asset: any, index: number) => (
+                                    <CarouselItem key={index}>
+                                        <div className="p-1">
+                                            <Card>
+                                                <CardContent className="flex aspect-square items-center justify-center p-6">
+                                                    <Image src={asset?.image} alt='logo' width={200} height={120} objectFit='cover' />
+                                                </CardContent>
+                                            </Card>
+                                        </div>
+                                    </CarouselItem>
+                                ))}
+                            </CarouselContent>
+                            <CarouselPrevious />
+                            <CarouselNext />
+                        </Carousel>
+
+                    </div>
+                    <div>
                         <h1 className=''>
                             Badge
                         </h1>
@@ -91,10 +137,9 @@ const ProductInfo = ({ product }: Props) => {
 
                     </div>
 
-                </div>
 
+                </div>
             </div>
-            {/* mobile screen */}
         </>
     )
 }
