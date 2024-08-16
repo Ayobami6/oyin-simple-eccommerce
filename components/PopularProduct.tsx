@@ -55,7 +55,6 @@ const PopularProduct = ({ type, products, loading }: Props) => {
                                             <CardContent>
                                                 <CardTitle>{item.name}</CardTitle>
                                                 <CardDescription>
-                                                    Product Description
                                                     <div className='flex justify-start font-bold mt-4'>₦{item.price}</div>
 
                                                 </CardDescription>

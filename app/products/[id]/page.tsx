@@ -6,6 +6,7 @@ import { fetchBanner } from '@/api/banner';
 import { fetchProductById } from '@/api/products';
 import Footer from '@/components/Footer';
 import ProductInfo from '@/components/ProductInfo';
+import Header from '@/components/Header';
 
 type Props = {}
 
@@ -52,6 +53,7 @@ const ProductDetail = (props: Props) => {
   return (
     <>
       <Banner bannerText={bannerText} loading={bannerLoading} />
+      <Header />
       <div className='flex flex-col min-h-screen'>
         <div className='flex-grow'>
           {
