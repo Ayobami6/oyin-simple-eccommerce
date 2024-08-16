@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -9,6 +10,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
+import Button from '@mui/material/Button'
 
 
 type Props = {
@@ -84,7 +86,7 @@ const ProductInfo = ({ product }: Props) => {
                         <h1 className='font-bold text-5xl'>
                             {product.name}
                         </h1>
-                        <div className='flex justify-start gap-4 mt-5 text-xl'>
+                        <div className='flex justify-start gap-4 my-5 text-xl'>
                             <h1 className='font-semibold line-through text-gray-400'>
                                 ₦{product.price}
                             </h1>
@@ -99,6 +101,17 @@ const ProductInfo = ({ product }: Props) => {
                             </p>
                         </div>
 
+                        <div className='flex items-center justify-center mt-10'>
+                            <Link href={"https://wa.me/message/TOEIZPY2U4UWD1"}>
+                                <Button className="w-[200px] font-Poppins h-[60px] hover:bg-slate-700 shadow-md text-[16px] text-white bg-main" type="button">
+                                    Order Now
+                                </Button>
+
+                            </Link>
+
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -108,7 +121,7 @@ const ProductInfo = ({ product }: Props) => {
             <div className='md:hidden p-[80px]'>
                 <div className='flex flex-col gap-2'>
                     <div>
-                        <Carousel className="w-full max-w-3xl">
+                        <Carousel className="w-full max-w-4xl">
                             <CarouselContent>
                                 {product && product.assets.map((asset: any, index: number) => (
                                     <CarouselItem key={index}>
@@ -127,13 +140,35 @@ const ProductInfo = ({ product }: Props) => {
                         </Carousel>
 
                     </div>
-                    <div>
-                        <h1 className=''>
-                            Badge
+                    <div className='flex flex-col'>
+                        <h1 className='font-bold text-2xl'>
+                            {product.name}
                         </h1>
-                        <h2 className=''>
-                            Title
-                        </h2>
+                        <div className='flex justify-start gap-4 my-5 text-xl'>
+                            <h1 className='font-semibold line-through text-gray-400'>
+                                ₦{product.price}
+                            </h1>
+                            <h1 className='font-semibold text-gray-400'>
+                                ₦{product.discount_price}
+                            </h1>
+
+                        </div>
+                        <div>
+                            <p>
+                                {product.description}
+                            </p>
+                        </div>
+
+                        <div className='flex items-center justify-center mt-10'>
+                            <Link href={"https://wa.me/message/TOEIZPY2U4UWD1"}>
+                                <Button className="w-[200px] font-Poppins h-[60px] hover:bg-slate-700 shadow-md text-[16px] text-white bg-main" type="button">
+                                    Order Now
+                                </Button>
+
+                            </Link>
+
+
+                        </div>
 
                     </div>
 
