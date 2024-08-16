@@ -62,10 +62,10 @@ const PopularProduct = ({ type, products, loading }: Props) => {
                                         </Link>
                                         <CardFooter>
                                             <div className='flex justify-between hover:text-dark cursor-pointer gap-2 w-full text-center'>
-                                                <div className='p-2' onClick={() => handleCopyClick(String(`http://localhost:3000/products/${item.id}`))}>
+                                                <div className='p-2' onClick={() => handleCopyClick(String(`https://oyin-simple-eccommerce.vercel.app/products/${item.id}`))}>
                                                     <FaShareAlt />
                                                 </div>
-                                                <Link href={"https://wa.me/message/TOEIZPY2U4UWD1"}>
+                                                <Link href={"https://api.whatsapp.com/send/?phone=2348183239589&text&type=phone_number&app_absent=0"}>
                                                     <Button className="font-Poppins w-[80px] h-[30px] shadow-md text-[14px] text-white bg-main" type="button">
                                                         Order
                                                     </Button>
