@@ -6,6 +6,8 @@ const nextConfig = {
           "localhost:8000",
           "http://localhost",
           "",
+          "oyinecommerce.pythonanywhere.com",
+          "https://oyinecommerce.pythonanywhere.com"
         ],
      },
 }

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/carousel"
 import Image from 'next/image'
 import Loading from './Loading'
+import { apiBaseUrl } from '@/constants/constants'
 
 
 
@@ -47,7 +48,7 @@ const CarouselPlugin = ({ data, loading }: Props) => {
                                     <Card className=''>
                                         <CardContent className="relative flex h-[300px] items-center justify-center p-6">
                                             <Image
-                                                src={`http://localhost:8000${item.image}`}
+                                                src={`https://oyinecommerce.pythonanywhere.com${item.image}`}
                                                 alt='loading'
                                                 layout="fill"
                                                 objectFit="cover"

@@ -62,13 +62,16 @@ const PopularProduct = ({ type, products, loading }: Props) => {
                                             </CardContent>
                                         </Link>
                                         <CardFooter>
-                                            <div onClick={() => handleCopyClick(String(`http://localhost:3000/products/${item.id}`))} className='flex justify-between hover:text-dark cursor-pointer gap-2 w-full text-center'>
-                                                <div className='p-2'>
+                                            <div className='flex justify-between hover:text-dark cursor-pointer gap-2 w-full text-center'>
+                                                <div className='p-2' onClick={() => handleCopyClick(String(`http://localhost:3000/products/${item.id}`))}>
                                                     <FaShareAlt />
                                                 </div>
-                                                <Button className="font-Poppins w-[80px] h-[30px] shadow-md text-[14px] text-white bg-main" type="button">
-                                                    Order
-                                                </Button>
+                                                <Link href={"https://wa.me/message/TOEIZPY2U4UWD1"}>
+                                                    <Button className="font-Poppins w-[80px] h-[30px] shadow-md text-[14px] text-white bg-main" type="button">
+                                                        Order
+                                                    </Button>
+                                                </Link>
+
                                             </div>
                                         </CardFooter>
                                     </Card >
