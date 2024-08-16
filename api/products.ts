@@ -21,3 +21,27 @@ export const fetchProductById = async (id: string) => {
         console.log(err)
     }
 }
+
+const searchProduct = async (searchString: string) => {
+    try {
+        const response = await fetch(`${apiBaseUrl}products?search=${searchString}`)
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error(error);
+        throw error;   
+    }
+
+}
+
+
+const filterByCategory = async (categoryId: number) => {
+    try {
+        const response = await fetch(`${apiBaseUrl}products?category=${categoryId}`)
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error(error);
+        throw error;   
+    }
+}
