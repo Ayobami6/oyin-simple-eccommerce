@@ -17,7 +17,9 @@ type Props = {
 
 const ProductInfo = ({ product }: Props) => {
     const [activeImage, setActiveImage] = useState(product.assets[0].image)
-    const handleChangeImage = (imageString: string) => {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const handleChangeImage = (imageString: string, index: number) => {
+        setActiveIndex(index)
         setActiveImage(imageString)
     }
     return (
@@ -51,7 +53,7 @@ const ProductInfo = ({ product }: Props) => {
                                             product.assets.map((asset: any, index: number) => (
                                                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                                                     <div className="p-1">
-                                                        <Card className={`cursor-pointer hover:border-2`} onClick={() => setActiveImage(asset.image)}>
+                                                        <Card className={`cursor-pointer ${activeIndex === index ? "hover:border-3 border-2 border-gray-500" : "hover:border-2"}`} onClick={() => handleChangeImage(asset.image, index)}>
                                                             <CardContent className="flex aspect-square items-center justify-center p-6">
                                                                 <Image src={asset?.image} alt='logo' width={100} height={80} objectFit='cover' />
                                                             </CardContent>
@@ -63,7 +65,7 @@ const ProductInfo = ({ product }: Props) => {
                                     }
                                 </CarouselContent>
                                 {
-                                    product.assets.length > 5 && (
+                                    product && product.assets.length > 5 && (
                                         <>
                                             <CarouselPrevious />
                                             <CarouselNext />
